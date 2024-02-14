@@ -1,19 +1,23 @@
+//NASA SUITS 2024
+//TEAM COSMIC- Jordan Thomas Acampado
+//Include Libraries so arduino has streaming capabilities
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 
-// Replace these with your WiFi credentials
+// Replace these with your WiFi username and password, good for any secure network
 const char* ssid = "your-ssid";
 const char* password = "your-password";
 
-// Replace this with your Thingspeak server address and API key
-const char* serverAddress = "api.thingspeak.com";
-const char* apiKey = "your-api-key";
+// When you connect to the TSS Stream just plug in the ip address
+const char* serverIPAddress = "xxx.xxx.xxx.xxx";  // Replace with the actual IP address
+const int serverPort = 80;  // The server port should be given when you connect
 
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
+//program to connect
 void setup() {
   Serial.begin(115200);
   delay(10);
@@ -25,13 +29,14 @@ void setup() {
     Serial.println("Connecting to WiFi...");
   }
   Serial.println("Connected to WiFi");
-
+//Error for connecting
   if (!mag.begin()) {
     Serial.println("Could not find a valid magnetometer, check wiring!");
     while (1);
   }
 }
 
+//Magnometer set up can use anything as long as it stream data this is just a test
 void loop() {
   sensors_event_t event;
   mag.getEvent(&event);
@@ -47,32 +52,19 @@ void loop() {
   delay(1000);  // Adjust the delay as needed
 }
 
+//program to send to the TSS server for further use, not sure how to acquire new data
 void sendToServer(String data) {
   WiFiClient client;
 
-  if (client.connect(serverAddress, 80)) {
-    // Make an HTTP request
-    client.println("POST /update.json HTTP/1.1");
-    client.println("Host: " + String(serverAddress));
-    client.println("Connection: close");
-    client.println("Content-Type: application/json");
-    client.print("Content-Length: ");
-    client.println(data.length());
-    client.println();
-    client.println(data);
+  if (client.connect(serverIPAddress, serverPort)) {
+    // Send data to TSS server
+    client.print(data);
 
-    Serial.println("Data sent to server:\n" + data);
+    Serial.println("Data sent to TSS server:\n" + data);
 
-    // Wait for the server to close the connection
-    while (client.connected()) {
-      if (client.available()) {
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-      }
-    }
-
+//Error handling
     client.stop();
   } else {
-    Serial.println("Unable to connect to server");
+    Serial.println("Unable to connect to TSS server");
   }
 }
