@@ -1,3 +1,4 @@
+//TEAM COSMIC - Jordan Thomas Acampado
 //Need to used unity AR Foundation Plug-in this to work
 //Place in Asset's portion of unity VR 
 using System.Collections.Generic; 
@@ -35,7 +36,26 @@ public class MartianEnvironmentAR : MonoBehaviour
                 vertices.Add(new Vector3(x, height, z));
             }
         }
+    
+    //Update the Position of the map based off of the Camera, once headset information and TSS heading and pointing is given change this
+    void Update()
+    {
+        UpdateMapWindow();
+    }
 
+    void UpdateMapWindow()
+    {
+        // Update map window based on the camera position
+        Vector3 cameraPosition = Camera.main.transform.position;
+        mapWindow.transform.position = new Vector3(cameraPosition.x + 5f, cameraPosition.y + 5f, cameraPosition.z);
+    }
+
+    // Map Toggle
+    public void ToggleMapWindow()
+    {
+        mapWindow.SetActive(!mapWindow.activeSelf);
+    }
+}
         // Create triangles based on the grid again need Foundation Support
         for (int x = 0; x < width - 1; x++)
         {
