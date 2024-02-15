@@ -1,5 +1,5 @@
 //Need to used unity AR Foundation Plug-in this to work
-//Place in Asset's portion of unity VR file
+//Place in Asset's portion of unity VR 
 using System.Collections.Generic; 
 using UnityEngine; //C# Unity Engine
 using UnityEngine.XR.ARFoundation;
