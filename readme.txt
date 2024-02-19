@@ -14,6 +14,6 @@ Matthew Underhill - HMD & LMCC Design
 Ryan Grassman - Formerly LMCC and HMD Design 
 
 Team COSMIC works as a cohesive unit and collaborates on all parts of the design to ensure that our finished interface will be both demonstrable and ultimately successful.
-We cannot stress how thrilled we are to be here, and we hope to demonstrate our proficiency in augmented reality and on a larger scale, our ability to implement successful engineering solutions.
+We cannot stress how thrilled we are to be here, and we hope to demonstrate our proficiency in augmented reality, and, on a larger scale, our ability to implement successful engineering solutions.
 
 Thanks for reading! For any further contact with Team COSMIC, feel free to contact the Point of Contact  at PhzyksGo4@gmail.com or +1 (210)305-0190. 
