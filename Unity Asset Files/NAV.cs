@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using cmath;
 public class Coordinate : MonoBehaviour {
     protected:
         double xCoordinate;
         double yCoordinate;
+        double pointing;
     public:
         void setX();
-        void setY()
-        double getX();  
-        double getY():
+        void setY();
+        double getX(); 
+        double getY();
+        double getangle();
     private:
 
     Coordinate(){
@@ -34,6 +36,13 @@ public class Coordinate : MonoBehaviour {
     }
     double getY(){
         return yCoordinate;
+    }
+
+    double getangle(){
+        double dot = xCoordinate*getX + yCoordinate*getY;
+        double det = xCoordinate*getY - yCoordinate*getX;
+        pointing = Math.Atan2(det,dot)/(Math.PI/180);
+        return pointing
     }
 }
 
