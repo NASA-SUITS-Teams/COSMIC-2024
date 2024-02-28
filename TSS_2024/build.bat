@@ -1,0 +1,1 @@
+cl /EHsc network.c server_data.c server.c /Fe:server.exe /link user32.lib ws2_32.lib iphlpapi.lib
